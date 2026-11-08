@@ -1,6 +1,6 @@
 import time
 from datetime import datetime
-
+import os
 import schedule
 
 from config import NEWS_LIMIT, RUN_INTERVAL_MINUTES
@@ -49,10 +49,11 @@ def run_safely():
 
 
 if __name__ == "__main__":
-    run_safely()
-
-    schedule.every(RUN_INTERVAL_MINUTES).minutes.do(run_safely)
-
-    while True:
-        schedule.run_pending()
-        time.sleep(30)
+    if os.getenv("RUN_ONCE") == "true":
+        run()
+    else:
+        run_safely()
+        schedule.every(RUN_INTERVAL_MINUTES).minutes.do(run_safely)
+        while True:
+            schedule.run_pending()
+            time.sleep(30)
