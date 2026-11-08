@@ -28,6 +28,6 @@ jobs:
       - name: Run the bot
         run: python main.py
         env:
-          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MONGO_URI: "mongodb+srv://omer2020084_db_user:HUFq7v3yNEfFlXMO@news-cluster.7zk6cgy.mongodb.net/?retryWrites=true&w=majority"
           DB_NAME: news_db
           RUN_ONCE: "true"
